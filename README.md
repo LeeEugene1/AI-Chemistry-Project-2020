@@ -1,3 +1,4 @@
 # AI-Chemistry-Project-2020
-AI Chemistry Project from Euclidsoft
-test
+
+프로젝트시연 :
+http://krict-dev.iptime.org:8000/
