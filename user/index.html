@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=1200" />
+        <!-- 경로 무시하시면됩니다 -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+        <link rel="stylesheet" href="../default.css">
+        <link rel="stylesheet" href="../user_style.css">
+        <link rel="stylesheet" href="../animate.min.css">
+        <link rel="stylesheet" href="../font.css">
+
+    <link rel="stylesheet" href="{% static 'css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'css/user_style.css' %}">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+	<script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+<!--	<script type="text/javascript" src="{% static 'js/script.js' %}"></script>-->
+	<script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+
+<title>Main Page</title>
+<script>
+    $(document).ready(function() {
+
+    });
+
+</script>
+</head>
+<body>
+
+</body>
+    <header class="header">
+        <h1 class="logo"><a href="{% url 'job_user:main_page' %}"><img src="{% static 'img/krict_logo.png' %}" alt="KRICT logo" /></a><p>AI <span>신약개발</span> Platform</p></h1>
+            {% if user.role == 'sup' %}
+            <div class="login"><a href="{% url 'job_manager:member_manager' %}">&nbsp;&nbsp;&nbsp;Admin</a></div>
+            {% endif %}
+            {% if not user.is_authenticated %}
+            <div class="login"><a href="{% url 'accounts:signup' %}">&nbsp;&nbsp;&nbsp;Signup</a></div>
+            <div class="login"><a href="{% url 'accounts:login' %}">&nbsp;&nbsp;&nbsp;Login</a></div>
+            {% else %}
+            <div class="login"><a href="{% url 'accounts:logout' %}">&nbsp;&nbsp;&nbsp;Logout</a></div>
+            <div class="login">
+                <div class="dropdown">
+                  <img src="{% url 'pydenticon_image' user.username %}" style="width: 30px; height: 30px;"/>
+                  <button class="dropbtn">{{ user.name }}</button>
+                  <div class="dropdown-content">
+                    <a href="{% url 'job_user:job_list' %}">Myjob</a>
+                    <a href="{% url 'job_user:module_list' %}">Module</a>
+                    <a href="{% url 'accounts:profile' %}">Profile</a>
+                  </div>
+                </div>
+            </div>
+            {% endif  %}
+	</header>
+    <div class="banner"></div>
+ 	<main>
+		<section>
+        <div class="mainTitle wow fadeInUpBig animated" style="visibility: visible; animation-name: fadeInUpBig;">
+            AI chemistry creates<br />the happiness of human beings
+        </div>
+            <ul class="mainModule">
+                {% for module in modules %}
+                    <li class="wow fadeInUp animated" data-wow-delay="0.2s" name="moduleLi" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                        <a href="#" onclick="href='{{ module.get_absolute_url }}'">
+                        <span class="image"><img src="{{ module.module_img.url }}" alt="" /></span>
+                        <strong>{{ module.module_name }}</strong>
+                        <span class="substance">{{ module.module_explanation }}</span>
+                        <ul class="hashtag">
+                            <li>#hashtag1,</li>
+                            <li>#hashtag2,</li>
+                            <li>#hashtag3</li>
+                        </ul>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+
+    <script>
+      new WOW().init();
+    </script>
+    <footer class="footer">
+        <div class="logo"><img src="/static/img/krict_flogo.png" alt="KRICT logo"></div>
+        <ul class="content">
+            <li><a href="#">Site Map</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Privacy Polic</a></li>
+        </ul>
+    </footer>
+</body>
+</html>

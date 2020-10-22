@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 경로 교체하시면됩니다 -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link rel="stylesheet" href="../default.css">
+    <link rel="stylesheet" href="../user_style.css">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript" src="{% static 'js/job/job_list.js' %}"></script>
+    <div class="contentWrap">
+        <!--left menu-->
+        <div class="viewWrap">
+            <!-- register -->
+            <form class="" action="{% url 'job_user:job_register_page' %}" method="POST">
+                <div class="titleWrap">
+                    <h1>Module Detail</h1>
+                    <div>
+                        <!-- 관리자모드에서보이는 모듈업데이트버튼 -->
+                        <!-- <input class="button-nonColor register-btn-color" type="submit" value="Module Update"/> -->
+                        <input class="button register-btn-color" type="button" value="Job Register"/>
+                        <input class="button-nonColor register-btn-color" type="button" value="Module Delete"/>
+                    </div>
+                </div>
+                <div class="content">
+                    <label for="title"><strong>title</strong></label>
+                    <input type="text" id="title">
+                </div>
+                <div class="content">
+                    <label for="content"><strong>content</strong></label>
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                </div>
+                <div class="content">
+                    <label for=""><strong>tag</strong></label>
+                    <input type="text" id="">
+                </div>
+                <div class="content">
+                    <label for=""><strong>paper link</strong></label>
+                    <input type="text" id="">
+                </div>
+                <div class="content">
+                    <label for=""><strong>thumbnail</strong></label>
+                    <input type="file" id="">
+                    <!-- <span>
+                        <label for="">
+                            <i class="xi-image-o"></i>
+                        </label>
+                    </span> -->
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+</body>
+</html>

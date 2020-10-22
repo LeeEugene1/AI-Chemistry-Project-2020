@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 경로 교체하시면됩니다 -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link rel="stylesheet" href="../default.css">
+    <link rel="stylesheet" href="../user_style.css">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript" src="{% static 'js/job/job_list.js' %}"></script>
+    <div class="contentWrap">
+        <!--left menu-->
+        <div class="listWrap">
+            <!-- register -->
+            <form class="title" action="{% url 'job_user:job_register_page' %}" method="POST">
+                <h1>Job List</h1>
+                <input class="button register-btn-color" type="submit" value="Job Register"/>
+            </form>
+
+            <!-- search -->
+            <form class="search" action="/job_list/" method="POST">
+                    <select name="" id="">
+                        <option value="jobname" selected="select">job name</option>
+                        <option value="status" selected="select">status</option>
+                    </select>
+                    <input type="search" class="SearchContent" name="SearchContent" placeholder="Search Input" value="{{SearchContent}}">
+                    <label class="Waiting" hidden>
+                        Waiting<input type="checkbox" name="display_type[]" value="Waiting">
+                    </label>
+                <span><input type="submit" value="search"></span>
+            </form>
+
+            <!-- list -->
+            <table>
+              <thead>
+                <tr>
+            <!-- 아래처럼 내부스타일로 width값 조절해주세요 -->
+                  <th style="width:5%">#</th>
+                  <th style="width:30%">job name</th>
+                  <th style="width:25%">module</th>
+                  <th style="width:25%">smiles</th>
+                  <th style="width:10%">schedule date</th>
+                  <th style="width:5%">status</th>
+                </tr>
+              </thead>
+              <tbody>
+                        <tr>
+                          <th>1</th>
+                          <td><a href="{{ job.get_absolute_url }}">name</a></td>
+                          <td><a href="">module name</a></td>
+                          <td><a href="">smiles Name</a></td>
+                          <td><a href="">2020.08.03</a></td>
+            <!-- status에 따른 버튼 디자인입니다 -->
+                          <!-- <td><button class="button-status completed"><a href="{{ job.get_result_url }}">completed</a></button></td> -->
+                          <!-- <td><button class="button-status waiting"><a href="{{ job.get_result_url }}">waiting</a></button></td> -->
+                          <!-- <td><button class="button-status running"><a href="{{ job.get_result_url }}">running</a></button></td> -->
+                          <td><button class="button-status fail"><a href="{{ job.get_result_url }}">fail</a></button></td>
+                          <!-- <td><button class="button-status stop"><a href="{{ job.get_result_url }}">stop</a></button></td> -->
+                        </tr>
+              </tbody>
+            </table>
+            <!-- Pagination -->
+            <div class="page-wrapper">
+                <ul class="pagination justify-content-center">
+                    <!-- 이전 페이지 -->
+                    <li class="page-item prev">
+                        <a href="" onclick="page_first(this);" i="1" class="page-link"><<</a>
+                    </li>
+                    <li class="page-item prev">
+                        <a class="check_" href="" onclick="page_previous(this);" i="{{ posts.previous_page_number }}" tabindex="-1">&lt;</a>
+                    </li>
+                    <!-- 페이지 범위 및 현재 페이지 -->
+                        <li class="page-item active">
+                            <!-- <span class="page-link">{{ page }}
+                                <span class="sr-only">(current)</span>
+                            </span> -->
+                            <span class="page-link">1</span>
+                        </li>
+                        <li class="page-item">
+                            <!-- <a href="" id="chk_page" onclick="page_move(this);">{{ page }}</a> -->
+                            <span class="page-link">2</span>
+                        </li>
+                    <!-- 다음 페이지 -->
+                    <li class="page-item next">
+                        <a class="page-link" href="" onclick="page_next(this);" i="{{ posts.next_page_number }}">&gt;</a>
+                    </li>
+                    <li class="page-item next">
+                        <a href="" onclick="page_last(this);  " i="{{ posts.paginator.num_pages }}" class="page-link">>></a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{height: 100%;}
+
+        /* 잘못된방법 */
+        /* body div{margin:50% auto;} */
+        
+        /* 해결1 - 모든브라우저상에 표현이가능하나 고정적인 w,h값필요 */
+        /* body div{position:absolute; top:50%; left:50%;} */
+
+        /* 해결2 - 익스플로어9이상에서만 - 모바일용 */
+        body div{position:relative; left:50%; top:50%; transform: translateY(-50%);}
+        div p{display: flex; align-items: center; justify-content: center; height: 100%;}
+
+        /* 해결3 - IE8이상 중첩구조필요(table>table-cell>inline-block)*/
+        /* .layer{
+            display: table;
+            width: 100%;
+            height: 100%;
+        }
+        .layer_inner{
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .content{
+            display: inline-block;
+        }
+        .content div{float:left;} */
+
+    </style>
+</head>
+<body>
+    <!-- <div class="layer">
+        <div class="layer_inner">
+            <div class="content">
+                <div style="width: 100px; height: 100px; background-color: red;">
+                    blablabla
+                </div>
+                <div style="width: 100px; height: 100px; background-color: blue;">
+                    blablabla
+                </div>
+                <div style="width: 100px; height: 100px; background-color: yellow;">
+                    blablabla
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div style="width: 100px; height: 100px; background-color: red;">
+        <p>중앙</p>
+    </div>
+    <div style="width: 100px; height: 100px; background-color: red;">
+        <p>중앙</p>
+    </div>
+    <div style="width: 100px; height: 100px; background-color: red;">
+        <p>중앙</p>
+    </div>
+    <div style="width: 100px; height: 100px; background-color: red;">
+        <p>중앙</p>
+    </div>
+    <div style="width: 100px; height: 100px; background-color: red;">
+        <p>중앙</p>
+    </div>
+    <div style="width: 100px; height: 100px; background-color: red;">
+        <p>중앙</p>
+    </div>
+    <div style="width: 100px; height: 100px; background-color: red;">
+        <p>중앙</p>
+    </div>
+</body>
+</html>

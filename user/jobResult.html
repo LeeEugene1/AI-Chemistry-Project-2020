@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 경로 교체하시면됩니다 -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link rel="stylesheet" href="../default.css">
+    <link rel="stylesheet" href="../user_style.css">
+    <title>Document</title>
+    <style>
+        
+.panel {
+  padding: 20px;
+  margin-bottom:10px;
+  background-color: var(--color-white-grey);
+  display: none;
+  overflow: hidden;
+  border: solid 1px var(--color-light-grey);
+  border-top: none;
+  /* transform: 1s linear; */
+}
+.accordion {
+  transition: 0.4s;
+  background-color: var(--white-color);
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  border: solid 1px var(--color-light-grey);
+  margin-top:10px;
+  font-size: 1.15em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.accordion:hover {
+  background-color:var(--color-mint);
+  color:var(--color-white);
+
+}
+.accordion:hover p{
+    color:var(--color-white);
+}
+
+.accordianWrap{
+    width: 80%;
+}
+.panel .file{border-top: 1px solid var(--color-light-grey); margin-top:10px; padding-top:10px;}
+.panel .file span{font-size:0.75em; margin-left:5px;}
+.panel .file i{display: flex; align-items: center;}
+
+/* .Waiting{border:1px solid red;} */
+
+/* .iconMinus{display:none} */
+.showminus:before { content: '-'; font-size: 1.5em; font-weight: 500; } 
+.showplus:before { content: '+';  font-size: 1.5em; font-weight: 500;}
+    </style>
+</head>
+<body>
+    <!-- <script type="text/javascript" src="{% static 'js/job/job_list.js' %}"></script> -->
+    <div class="contentWrap">
+        <!--left menu-->
+        <div class="listWrap">
+            <!-- register -->
+            <form class="title" action="{% url 'job_user:job_register_page' %}" method="POST">
+                <h1>Job List</h1>
+                <input class="button register-btn-color" type="submit" value="Job Register"/>
+            </form>
+
+            <!-- search -->
+            <!-- <form class="search" action="/job_list/" method="POST">
+                    <select name="" id="">
+                        <option value="jobname" selected="select">job name</option>
+                        <option value="status" selected="select">status</option>
+                    </select>
+                    <input type="search" class="SearchContent" name="SearchContent" placeholder="Search Input" value="{{SearchContent}}">
+                    <label class="Waiting" hidden>
+                        Waiting<input type="checkbox" name="display_type[]" value="Waiting">
+                    </label>
+                <span><input type="submit" value="search"></span>
+            </form> -->
+
+            <form class="search" action="/job_list/" method="POST">
+                <select name="" id="">
+                    <option value="jobname">job name</option>
+                    <option value="status" selected="select">status</option>
+                </select>
+                <input type="search" class="SearchContent" name="SearchContent" placeholder="Search Input" value="{{SearchContent}}" hidden>
+                <label class="Waiting">
+                    Waiting<input type="checkbox" name="display_type[]" value="Waiting" style="width:40px; height:20px;">
+                </label>
+                <span><input type="submit" value="search"></span>
+            </form>
+
+            <!-- list -->
+            <div class="accordianWrap">
+                <a href="javascript:void(0)" onclick="toggle_visibility('team4'); toggle_plus('team4Plus');"> 
+                    <button class="accordion ">
+                    <p>title</p> <span id="team4Plus" class="showplus"></span>
+                    </button>
+                </a>
+
+                <div id="team4" class="panel">
+                    <p>결과1에 대한 result값입니다.</p>
+                    <p>결과1에 대한 result값입니다.</p>
+                    <p>결과1에 대한 result값입니다.</p>
+                    <div class="file">
+                        <i class="xi-file-text-o"><span>파일명</span></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        acc = document.getElementsByClassName("accordion");
+
+        for(let i = 0; acc.length; i++){
+            acc[i].addEventListener("click", function(){
+                let panel = this.nextElementSibling;
+                if(panel.style.display == "block"){
+                    panel.style.display = "none";
+                }else{
+                    panel.style.display = "block";
+                }
+            })
+        }
+        // Plus/Minus Toggle
+        function toggle_plus(id) {
+            var f = document.getElementById(id);
+            if (f.classList.contains("showplus")) {
+                    f.classList.remove("showplus");
+                    f.classList.add("showminus");
+                } else {
+                    f.classList.remove("showminus");
+                    f.classList.add("showplus");
+                }
+        }
+        // Toggle to show and hide content below the link
+        function toggle_visibility(id) {
+            var e = document.getElementById(id);
+            if(e.style.display == 'block') {
+                e.style.display = 'none';
+            } else {
+                e.style.display = 'block';
+            }
+        }
+
+//         $(document).ready(function (){
+
+// let acc = document.getElementsByClassName("accordion");
+// let i;
+// for(i = 0; i<acc.length; i++){
+//     acc[i].addEventListener("click", function(){
+//         this.classList.toggle('active');
+//         let panel = this.nextElementSibling;
+//         var icon = $(this).children('i');
+
+//         if(panel.style.display == "block"){
+//             panel.style.display = "none";
+//             icon.attr('class', 'xi-plus');
+//         }else{
+//             panel.style.display = "block";
+//             icon.attr('class', 'xi-minus');
+//         }
+//     })
+// }
+    </script>
+
+</body>
+</html>
